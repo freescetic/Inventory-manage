@@ -23,6 +23,13 @@ export default function Home() {
     setInventory(inventoryList);
   };
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') { // <-- Add this condition
+      updateInventory();
+    }
+  }, []);
+
+
   const removeItem = async (itemName) => {
     const docRef = doc(collection(firestore, 'Inventory'), itemName);
     const docSnap = await getDoc(docRef);
