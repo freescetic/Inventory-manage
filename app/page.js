@@ -29,6 +29,10 @@ export default function Home() {
     }
   }, []);
 
+  if (typeof window === 'undefined') {
+    global.window = {};  // Or create a mock object with relevant properties
+  }
+
 
   const removeItem = async (itemName) => {
     const docRef = doc(collection(firestore, 'Inventory'), itemName);
